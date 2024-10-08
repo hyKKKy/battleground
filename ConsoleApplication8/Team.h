@@ -1,19 +1,16 @@
 #pragma once
 #include <iostream>
 #include "Unit.h"
-
+#include "Array.h"
 
 class Team
 {
 public:
-	int RandomTarget(Team& units)
-	{
-		return rand() % units.size;
-	}
+	int RandomTarget(Team& units);
 
 	Team();
 	
-	Team(Unit** units, int size);
+	Team(const Array<Unit*>& units);
 
 	Team(const Team& other) = delete;
 	Team& operator=(const Team& other) = delete;
@@ -23,9 +20,6 @@ public:
 	void Attack(Team& enemyTeam);
 
 private:
-	Unit** units;
-	int size;
-
-	
+	Array<Unit*> units;
 };
 
