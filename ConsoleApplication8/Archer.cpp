@@ -1,6 +1,8 @@
 #include "Archer.h"
 #include <iostream>
 
+using namespace GameUnits;
+
 Archer::Archer(const char* name, int hp, int range, int arrows, Bow* bow)
     : Unit(name, hp, bow),
     range(range > 0 ? range : 10),

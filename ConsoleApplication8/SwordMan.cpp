@@ -1,6 +1,8 @@
 #include "SwordMan.h"
 #include <iostream>
 
+using namespace GameUnits;
+
 SwordMan::SwordMan(const char* name, int hp, int power, Sword* sword)
     : Unit(name, hp, sword),
     power(power) {

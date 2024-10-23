@@ -2,16 +2,19 @@
 #include "Unit.h"
 #include "Bow.h"
 
-class Archer : public Unit
-{
-public:
-    Archer(const char* name, int hp, int range, int arrows, Bow* bow);
+namespace GameUnits{
 
-    virtual void Attack(Unit& enemy);
+    class Archer : public Unit
+    {
+    public:
+        Archer(const char* name, int hp, int range, int arrows, Bow* bow);
 
-    ~Archer();
+        virtual void Attack(Unit& enemy);
 
-private:
-    int range;
-    int arrows;
-};
+        ~Archer();
+
+    private:
+        int range;
+        int arrows;
+    };
+}

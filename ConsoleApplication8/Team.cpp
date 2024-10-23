@@ -1,6 +1,8 @@
 #include "Team.h"
 #include <iostream>
 
+using namespace GameBattle;
+
 Team::Team(): units() {}
 
 Team::Team(const Array<Unit*>& units) {

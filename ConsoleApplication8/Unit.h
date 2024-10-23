@@ -2,33 +2,36 @@
 #include "Weapon.h"
 #include "Position.h"
 
-class Unit
-{
-public:
-    Unit(const char* name, int hp, Weapon* weapon, const Position& position = Position());
+namespace GameUnits{
 
-    int GetHP() const;
+    class Unit
+    {
+    public:
+        Unit(const char* name, int hp, Weapon* weapon, const Position& position = Position());
 
-    void SetHP(int value);
+        int GetHP() const;
 
-    const char* GetName() const;
+        void SetHP(int value);
 
-    virtual void Attack(Unit& enemy);
+        const char* GetName() const;
 
-    void Damaged(int value);
+        virtual void Attack(Unit& enemy);
 
-    Position GetPosition() const;
+        void Damaged(int value);
 
-    void SetPosition(const Position& newPosition);
+        Position GetPosition() const;
 
-     void MoveTowards(Unit& target);
+        void SetPosition(const Position& newPosition);
 
-    ~Unit();
+         void MoveTowards(Unit& target);
 
-protected:
+        ~Unit();
+
+    protected:
     
-    int hp;
-    char* name;
-    Weapon* weapon;
-    Position position;
-};
+        int hp;
+        char* name;
+        Weapon* weapon;
+        Position position;
+    };
+}

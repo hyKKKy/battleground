@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Unit.h"
 
+using namespace GameUnits;
 
 Unit::Unit(const char* name, int hp, Weapon* weapon, const Position& position)
     : hp(hp > 0 ? hp : 100), weapon(weapon), position(position)

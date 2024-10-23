@@ -3,23 +3,28 @@
 #include "Unit.h"
 #include "Array.h"
 
-class Team
-{
-public:
-	int RandomTarget(Team& units);
+using namespace GameUnits;
 
-	Team();
+namespace GameBattle{
+
+	class Team
+	{
+	public:
+		int RandomTarget(Team& units);
+
+		Team();
 	
-	Team(const Array<Unit*>& units);
+		Team(const Array<Unit*>& units);
 
-	Team(const Team& other) = delete;
-	Team& operator=(const Team& other) = delete;
+		Team(const Team& other) = delete;
+		Team& operator=(const Team& other) = delete;
 
-	void Add(Unit& new_unit);
+		void Add(Unit& new_unit);
 
-	void Attack(Team& enemyTeam);
+		void Attack(Team& enemyTeam);
 
-private:
-	Array<Unit*> units;
-};
+	private:
+		Array<Unit*> units;
+	};
+}
 

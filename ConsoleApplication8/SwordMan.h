@@ -2,13 +2,16 @@
 #include "Unit.h"
 #include "Sword.h"
 
-class SwordMan : public Unit
-{
-public:
-    SwordMan(const char* name, int hp, int power, Sword* sword);
+namespace GameUnits{
 
-    virtual void Attack(Unit& enemy);
+    class SwordMan : public Unit
+    {
+    public:
+        SwordMan(const char* name, int hp, int power, Sword* sword);
 
-private:
-    int power;
-};
+        virtual void Attack(Unit& enemy);
+
+    private:
+        int power;
+    };
+}

@@ -1,32 +1,36 @@
 #pragma once
-
 #include <iostream>
 #include <initializer_list>
 #include "IPrint.h"
 #include <stdexcept>
 
-template<typename T>
-class Array : public IPrint
-{
-private:
-    const size_t GROWTH_FACTOR = 2; // !!!
-    T* data;
-    size_t size;
-    size_t capacity;
-public:
-    Array();
-    Array(std::initializer_list<T> init_list);
-    Array(T data[], size_t size);
-    Array(const Array& other);
-    ~Array();
-    Array& operator=(const Array& other);
-    T& operator[](size_t index);
-    void erase(int first);
-    void push_back(const T& value);
-    void clear();
-    size_t get_size() const;
-    void print() const override;
-};
+namespace Utility {
+
+    template<typename T>
+    class Array : public IPrint
+    {
+    private:
+        const size_t GROWTH_FACTOR = 2; // !!!
+        T* data;
+        size_t size;
+        size_t capacity;
+    public:
+        Array();
+        Array(std::initializer_list<T> init_list);
+        Array(T data[], size_t size);
+        Array(const Array& other);
+        ~Array();
+        Array& operator=(const Array& other);
+        T& operator[](size_t index);
+        void erase(int first);
+        void push_back(const T& value);
+        void clear();
+        size_t get_size() const;
+        void print() const override;
+    };
+}
+
+using namespace Utility;
 
 template<typename T>
 Array<T>::Array()
