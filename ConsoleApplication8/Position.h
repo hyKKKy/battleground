@@ -27,4 +27,18 @@ struct Position
             y--;
         }
     }
+
+    void Save(std::ofstream& stream) const {
+        if (stream.is_open()) {
+            stream.write(reinterpret_cast<const char*>(&x), sizeof(int));
+            stream.write(reinterpret_cast<const char*>(&y), sizeof(int));
+        }
+    }
+
+    void Load(std::ifstream& stream) {
+        if (stream.is_open()) {
+            stream.read(reinterpret_cast<char*>(&x), sizeof(int));
+            stream.read(reinterpret_cast<char*>(&y), sizeof(int));
+        }
+    }
 };

@@ -3,7 +3,7 @@
 
 using namespace GameUnits;
 
-SwordMan::SwordMan(const char* name, int hp, int power, Sword* sword)
+SwordMan::SwordMan(const std::string& name, int hp, int power, Sword* sword)
     : Unit(name, hp, sword),
     power(power) {
 }

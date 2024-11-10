@@ -4,5 +4,5 @@
 class Bow : public Weapon
 {
 public:
-    Bow(const char* name, int damage);
+    Bow(const std::string& name, int damage);
 };

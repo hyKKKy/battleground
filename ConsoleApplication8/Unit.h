@@ -1,19 +1,20 @@
 #pragma once
 #include "Weapon.h"
 #include "Position.h"
+#include <string>
 
 namespace GameUnits{
 
-    class Unit
+    class Unit : public IFile
     {
     public:
-        Unit(const char* name, int hp, Weapon* weapon, const Position& position = Position());
+        Unit(const std::string& name, int hp, Weapon* weapon, const Position& position = Position());
 
         int GetHP() const;
 
         void SetHP(int value);
 
-        const char* GetName() const;
+        const std::string& GetName() const;
 
         virtual void Attack(Unit& enemy);
 
@@ -25,12 +26,17 @@ namespace GameUnits{
 
          void MoveTowards(Unit& target);
 
+         virtual void Save(std::ofstream& stream) const override;
+         virtual void Save();
+         virtual void Load(std::ifstream& stream) override;
+         virtual void Load() override;
+
         ~Unit();
 
     protected:
     
         int hp;
-        char* name;
+        std::string name;
         Weapon* weapon;
         Position position;
     };

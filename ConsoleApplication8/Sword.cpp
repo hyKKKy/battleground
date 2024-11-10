@@ -1,6 +1,6 @@
 #include "Sword.h"
 
-Sword::Sword(const char* name, int damage)
+Sword::Sword(const std::string& name, int damage)
     : Weapon(name, damage)
 {
 }

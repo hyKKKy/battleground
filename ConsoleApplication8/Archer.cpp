@@ -3,7 +3,7 @@
 
 using namespace GameUnits;
 
-Archer::Archer(const char* name, int hp, int range, int arrows, Bow* bow)
+Archer::Archer(const std::string& name, int hp, int range, int arrows, Bow* bow)
     : Unit(name, hp, bow),
     range(range > 0 ? range : 10),
     arrows(arrows > 0 ? arrows : 60) {

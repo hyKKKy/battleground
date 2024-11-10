@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include "Unit.h"
-#include "Array.h"
 
 using namespace GameUnits;
 
@@ -12,9 +12,9 @@ namespace GameBattle{
 	public:
 		int RandomTarget(Team& units);
 
-		Team();
-	
-		Team(const Array<Unit*>& units);
+		Team() = default;
+
+		~Team() = default;
 
 		Team(const Team& other) = delete;
 		Team& operator=(const Team& other) = delete;
@@ -24,7 +24,7 @@ namespace GameBattle{
 		void Attack(Team& enemyTeam);
 
 	private:
-		Array<Unit*> units;
+		std::vector<Unit*> units;
 	};
 }
 

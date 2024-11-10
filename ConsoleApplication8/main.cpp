@@ -15,6 +15,10 @@ int main()
 
     Sword Sword1("Sword1", 20);
     Bow Bow1("Bow1", 15);
+    Bow1.Save();
+    Bow1.Load();
+
+
 
     GameUnits::Archer archer1("Bob", 100, 20, 200, &Bow1);
     GameUnits::SwordMan swordman1("Rex4", 100, 10, &Sword1);
@@ -22,8 +26,11 @@ int main()
     GameUnits::SwordMan swordman3("Rex2", 100, 30, &Sword1);
     GameUnits::SwordMan swordman4("Rex3", 100, 40, &Sword1);
 
-    GameBattle::Team team1;
-    GameBattle::Team team2;
+    archer1.Save();
+    archer1.Load();
+
+    /*GameBattle::Team team1;
+    GameBattle::Team team2;*/
 
     /*team2.Add(archer1);
     team2.Add(swordman1);
@@ -31,7 +38,7 @@ int main()
     team2.Add(swordman3);
     team2.Add(swordman4);
 
-    std::cout << team1.RandomTarget(team2) << std::endl;*/
+    std::cout << team1.RandomTarget(team2) << std::endl;
 
     archer1.SetPosition(Position(0, 0));
     swordman1.SetPosition(Position(5, 5));
@@ -56,7 +63,7 @@ int main()
     swordman1.Attack(archer1);
     swordman1.Attack(archer1);
 
-    std::cout << "GG" << std::endl;
+    std::cout << "GG" << std::endl;*/
 
     return 0;
 }

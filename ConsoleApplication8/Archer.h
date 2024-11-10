@@ -7,7 +7,7 @@ namespace GameUnits{
     class Archer : public Unit
     {
     public:
-        Archer(const char* name, int hp, int range, int arrows, Bow* bow);
+        Archer(const std::string& name, int hp, int range, int arrows, Bow* bow);
 
         virtual void Attack(Unit& enemy);
 

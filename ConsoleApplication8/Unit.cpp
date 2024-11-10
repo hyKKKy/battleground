@@ -4,12 +4,10 @@
 
 using namespace GameUnits;
 
-Unit::Unit(const char* name, int hp, Weapon* weapon, const Position& position)
-    : hp(hp > 0 ? hp : 100), weapon(weapon), position(position)
+Unit::Unit(const std::string& name, int hp, Weapon* weapon, const Position& position)
+    : name(name), hp(hp > 0 ? hp : 100), weapon(weapon), position(position)
 {
-    int len = std::strlen(name) + 1;
-    this->name = new char[len];
-    std::strcpy(this->name, name);
+
 }
 
 int Unit::GetHP() const
@@ -21,7 +19,7 @@ void Unit::SetHP(int value) {
     hp = value > 0 ? value : 100;
 }
 
-const char* Unit::GetName() const
+const std::string& Unit::GetName() const
 {
     return name;
 }
@@ -63,5 +61,73 @@ void Unit::MoveTowards(Unit& target) {
 }
 
 Unit::~Unit() {
-    delete[] name;
+    
 }
+
+void Unit::Save() {
+    std::ofstream stream("udata.bin", std::ios::out | std::ios::binary);
+    if (stream.is_open()) {
+        Save(stream);
+    }
+}
+
+void Unit::Save(std::ofstream& stream) const {
+    if (stream.is_open()) {
+        size_t nameSize = name.size();
+        stream.write(reinterpret_cast<const char*>(&nameSize), sizeof(size_t));
+        stream.write(name.c_str(), nameSize);
+
+        stream.write(reinterpret_cast<const char*>(&hp), sizeof(int));
+
+        if (weapon) {
+            bool hasWeapon = true;
+            stream.write(reinterpret_cast<const char*>(&hasWeapon), sizeof(bool));
+            weapon->Save(stream);
+        }
+        else {
+            bool hasWeapon = false;
+            stream.write(reinterpret_cast<const char*>(&hasWeapon), sizeof(bool));
+        }
+
+        position.Save(stream);
+    }
+}
+
+void Unit::Load() {
+    std::ifstream stream("unit_data.bin", std::ios::in | std::ios::binary);
+    if (stream.is_open()) {
+        Load(stream);
+    }
+}
+
+void Unit::Load(std::ifstream& stream) {
+    if (stream.is_open()) {
+        size_t nameSize;
+        stream.read(reinterpret_cast<char*>(&nameSize), sizeof(size_t));
+
+        char* buffer = new char[nameSize + 1];
+        stream.read(buffer, nameSize);
+        buffer[nameSize] = '\0';
+        name = std::string(buffer);
+        delete[] buffer;
+
+        stream.read(reinterpret_cast<char*>(&hp), sizeof(int));
+
+        bool hasWeapon;
+        stream.read(reinterpret_cast<char*>(&hasWeapon), sizeof(bool));
+
+        if (hasWeapon) {
+            if (!weapon) {
+                weapon = new Weapon("", 0);
+            }
+            weapon->Load(stream);
+        }
+        else {
+            delete weapon;
+            weapon = nullptr;
+        }
+
+        position.Load(stream);
+    }
+}
+

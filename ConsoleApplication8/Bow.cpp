@@ -1,6 +1,6 @@
 #include "Bow.h"
 
-Bow::Bow(const char* name, int damage)
+Bow::Bow(const std::string& name, int damage)
     : Weapon(name, damage)
 {
 }

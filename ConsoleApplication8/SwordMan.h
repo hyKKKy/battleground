@@ -7,7 +7,7 @@ namespace GameUnits{
     class SwordMan : public Unit
     {
     public:
-        SwordMan(const char* name, int hp, int power, Sword* sword);
+        SwordMan(const std::string& name, int hp, int power, Sword* sword);
 
         virtual void Attack(Unit& enemy);
 

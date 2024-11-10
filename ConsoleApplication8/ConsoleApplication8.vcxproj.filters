@@ -71,5 +71,8 @@
     <ClInclude Include="Array.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

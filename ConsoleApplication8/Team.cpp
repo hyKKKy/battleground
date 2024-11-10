@@ -1,36 +1,31 @@
 #include "Team.h"
 #include <iostream>
 
-using namespace GameBattle;
+namespace GameBattle{
 
-Team::Team(): units() {}
-
-Team::Team(const Array<Unit*>& units) {
-	this->units = units;
-}
-
-void Team::Add(Unit& new_unit) {
-	units.push_back(&new_unit); 
-}
-
-void Team::Attack(Team& enemyTeam) {
-    if (units.get_size() == 0 || enemyTeam.units.get_size() == 0) {
-        return;
+    void Team::Add(Unit& new_unit) {
+        units.push_back(&new_unit);
     }
 
-    for (size_t i = 0; i < units.get_size(); i++) {
-        Unit* attacker = units[i];
-        Unit* target = enemyTeam.units[RandomTarget(enemyTeam)];
+    void Team::Attack(Team& enemyTeam) {
+        if (units.size() == 0 || enemyTeam.units.size() == 0) {
+            return;
+        }
 
-        if (attacker && target) {
-            double distance = attacker->GetPosition().Distance(target->GetPosition());
-            std::cout << "Distance between " << attacker->GetName() << " and " << target->GetName() << ": " << distance << std::endl;
+        for (size_t i = 0; i < units.size(); i++) {
+            Unit* attacker = units[i];
+            Unit* target = enemyTeam.units[RandomTarget(enemyTeam)];
 
-            attacker->Attack(*target);
+            if (attacker && target) {
+                double distance = attacker->GetPosition().Distance(target->GetPosition());
+                std::cout << "Distance between " << attacker->GetName() << " and " << target->GetName() << ": " << distance << std::endl;
+
+                attacker->Attack(*target);
+            }
         }
     }
-}
 
-int Team::RandomTarget(Team& units) {
-    return rand() % units.units.get_size();
+    int Team::RandomTarget(Team& other) {
+        return rand() % other.units.size();
+    }
 }
